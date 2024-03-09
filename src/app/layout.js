@@ -1,12 +1,23 @@
 import Link from 'next/link';
 import './globals.css';
+// import { useEffect, useState } from 'react';
 
-export const metadata = {
-  title: '웹 튜토리얼',
-  description: 'SeoyoungPark',
-};
+// export const metadata = {
+//   title: '웹 튜토리얼',
+//   description: 'SeoyoungPark',
+// };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  // const [topics, setTopics] = useState([]);
+  // useEffect(() => {
+  // fetch('http://localhost:9999/topics')
+  //   .then((resp) => resp.json())
+  //   .then((result) => {
+  //     setTopics(result);
+  //   });
+  // }, []);
+  const resp = await fetch('http://localhost:9999/topics');
+  const topics = await resp.json();
   return (
     <html>
       <body>
@@ -14,12 +25,11 @@ export default function RootLayout({ children }) {
           <Link href="/">Web</Link>
         </h1>
         <ol>
-          <li>
-            <Link href="/read/1">html</Link>
-          </li>
-          <li>
-            <Link href="/read/2">css</Link>
-          </li>
+          {topics.map((topic) => (
+            <li key={topic.id}>
+              <Link href={`/read/${topic.id}`}>{topic.title}</Link>
+            </li>
+          ))}
         </ol>
         {children}
         <ul>
