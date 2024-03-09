@@ -2,10 +2,10 @@ import Link from 'next/link';
 import './globals.css';
 // import { useEffect, useState } from 'react';
 
-// export const metadata = {
-//   title: '웹 튜토리얼',
-//   description: 'SeoyoungPark',
-// };
+export const metadata = {
+  title: '웹 튜토리얼',
+  description: 'SeoyoungPark',
+};
 
 export default async function RootLayout({ children }) {
   // const [topics, setTopics] = useState([]);
